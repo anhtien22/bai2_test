@@ -10,7 +10,6 @@ const StudentClassList = ({ student, getStudents }) => {
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
-  const [classList, setClassList] = useState(student);
   const [offset, setOffset] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [currentData, setCurrentData] = useState([]);
@@ -18,9 +17,7 @@ const StudentClassList = ({ student, getStudents }) => {
   const pageLimit = 5;
   const pContext = useContext(StudentContext);
   const { deleteStudent } = pContext;
-  const handleChange = e => {
-    setClassList({ ...classList, [e.target.name]: e.target.value })
-  }
+
   useEffect(() => {
     setCurrentData(student.students.slice(offset, offset + pageLimit));
   }, [offset, student.students]);
@@ -41,7 +38,7 @@ const StudentClassList = ({ student, getStudents }) => {
           <div className="form-group">
             <h3>{ student.name }</h3>
             <span>Sỉ số: { student.students.length } </span>
-            { student.students.map((s, index) => {
+            { currentData.map((s, index) => {
               return (
                 <>
                   <div key={ student.id }>

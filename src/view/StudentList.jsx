@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import StudentContext from "../context/StudentContext";
 import StudentClassList from './subview/StudentClassList';
 
@@ -7,7 +7,7 @@ const StudentList = () => {
   const { getStudents, students } = pContext;
   useEffect(() => {
     getStudents();
-  }, []);
+  });
 
   return (
     <div>

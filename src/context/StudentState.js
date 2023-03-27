@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import StudentContext from './StudentContext'
 import axios from 'axios'
 
