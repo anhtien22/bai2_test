@@ -32,7 +32,7 @@ const StudentClassList = ({ student }) => {
             { student.students.map((s, index) => {
               return (
                 <>
-                  <div key={ student.id }>
+                  <div key={ index }>
                     <ul className="list-group  ">
                       <li className="row list-group-item d-flex justify-content-between align-items-start" >
                         <div className="ms-2 me-auto col" >
@@ -47,9 +47,9 @@ const StudentClassList = ({ student }) => {
 
                           </div>
                         </div>
-                        <div class="col d-flex flex-column justify-content-end align-items-end gap-3">
+                        <div className="col d-flex flex-column justify-content-end align-items-end gap-3">
                           <StudentEdit student={ s } students={ student } />
-                          <Button variant="danger" class="p-3" onClick={ () => deleteSaveChanges(s.id, student.user.id) }>Xóa</Button>
+                          <Button variant="danger" onClick={ () => deleteSaveChanges(s.id, student.user.id) }>Xóa</Button>
                         </div>
                       </li>
                     </ul>

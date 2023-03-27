@@ -7,14 +7,14 @@ const StudentList = () => {
   const { getStudents, students } = pContext;
   useEffect(() => {
     getStudents();
-  });
+  }, []);
 
   return (
     <div>
       <ol className="list-group list-group-numbered">
         { students && students.map((student, index) => {
           return (
-            <li className="list-group-item d-flex justify-content-between align-items-start" key={ student.id }>
+            <li className="list-group-item d-flex justify-content-between align-items-start" key={ index }>
               <div className="ms-2 me-auto " >
                 <div className="fw-bold">{ student.name }</div>
                 <div className="fw-bold d-flex justify-content-between align-items-end">Sỉ số: { student.students.length }</div>
