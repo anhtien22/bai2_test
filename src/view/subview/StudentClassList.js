@@ -1,26 +1,17 @@
 import { Button, Modal } from 'react-bootstrap'
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import StudentEdit from './StudentEdit';
 import StudentAdd from './StudentAdd';
-import Paginator from 'react-hooks-paginator';
 import StudentContext from '../../context/StudentContext';
 import moment from 'moment';
 
-const StudentClassList = ({ student, getStudents }) => {
+const StudentClassList = ({ student }) => {
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
-  const [offset, setOffset] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [currentData, setCurrentData] = useState([]);
-
-  const pageLimit = 5;
   const pContext = useContext(StudentContext);
   const { deleteStudent } = pContext;
 
-  useEffect(() => {
-    setCurrentData(student.students.slice(offset, offset + pageLimit));
-  }, [offset, student.students]);
 
   const deleteSaveChanges = (id_student, id_user) => {
     deleteStudent(id_student, id_user);
@@ -38,7 +29,7 @@ const StudentClassList = ({ student, getStudents }) => {
           <div className="form-group">
             <h3>{ student.name }</h3>
             <span>Sỉ số: { student.students.length } </span>
-            { currentData.map((s, index) => {
+            { student.students.map((s, index) => {
               return (
                 <>
                   <div key={ student.id }>
@@ -68,19 +59,7 @@ const StudentClassList = ({ student, getStudents }) => {
               )
             }) }
           </div>
-          <div>
-            <Paginator
-              totalRecords={ student.students.length }
-              pageLimit={ pageLimit }
-              pageNeighbours={ 2 }
-              setOffset={ setOffset }
-              currentPage={ currentPage }
-              setCurrentPage={ setCurrentPage }
-              pageContainerClass="mb-0 mt-0 d-flex "
-              pagePrevText="«"
-              pageNextText="»"
-            />
-          </div>
+
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={ handleClose }>
